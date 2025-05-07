@@ -15,7 +15,7 @@ https://github.com/openshift/kube-compare/tree/release-4.19
 make cross-build
 ```
 
-if you want to use the file here copy it to a directory that exists in your search path , for example:
+if you want to use the file here copy it to a directory that exists in your search path ,first download it to your home direcory, for example:
 
 ```bash
 cd ~
