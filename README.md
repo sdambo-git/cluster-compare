@@ -31,4 +31,6 @@ git clone https://github.com/sdambo-git/cluster-compare.git
 ```
 In my case I cloned the repository to my home directory,please take a look at image1:
 
+![home directory screenshot](images/root_directory.png)
+
 
