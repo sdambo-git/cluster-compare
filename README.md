@@ -5,9 +5,11 @@ pay attention that the file is compiled on rhel9 OS !
 
 And the 4.19 version of the tool isn't released yet...  It's part of 4.19 OpenShift GA :
 
-https://github.com/openshift/kube-compare/blob/release-4.18/docs/image-build.md
+https://github.com/openshift/kube-compare/blob/release-4.19/docs/image-build.md
 
 you need to clone the cluster compare from github and run it as instructed. and compile it by running:
+
+https://github.com/openshift/kube-compare/tree/release-4.19
 
 ```
 make cross-build
