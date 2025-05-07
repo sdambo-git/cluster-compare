@@ -19,5 +19,5 @@ if you want to use the file here copy it to a directory that exists in your sear
 
 ```bash
 cd ~
-cp kubectl-cluster_compare /usr/local/bin
+sudo cp kubectl-cluster_compare /usr/local/bin
 ```
