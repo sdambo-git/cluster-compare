@@ -24,4 +24,11 @@ sudo cp kubectl-cluster_compare /usr/local/bin
 
 ## Using cluster-compare directly on the cluster
 
-clone the cluster compare templates and references to alocal directory on your notebook  
+clone the cluster compare templates and references to a local directory on your notebook, example:
+
+```bash
+git clone https://github.com/sdambo-git/cluster-compare.git
+```
+In my case I cloned the repository to my home directory,please take a look at image1:
+
+
