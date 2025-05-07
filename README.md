@@ -21,3 +21,7 @@ if you want to use the file here copy it to a directory that exists in your sear
 cd ~
 sudo cp kubectl-cluster_compare /usr/local/bin
 ```
+
+## Using cluster-compare directly on the cluster
+
+clone the cluster compare templates and references to alocal directory on your notebook  
