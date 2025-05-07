@@ -29,8 +29,17 @@ clone the cluster compare templates and references to a local directory on your 
 ```bash
 git clone https://github.com/sdambo-git/cluster-compare.git
 ```
-In my case I cloned the repository to my home directory,please take a look at image1:
+In my case I cloned the repository to my home directory,change directory to kube-compare-reference directory please take a look at the image:
 
 ![home directory screenshot](images/root_directory.png)
+
+You will see there 3 directories named per ocp version:
+- ocp4_15
+- ocp4_16
+- ocp4_17
+
+Change to the directory relevant to the cluster version you are using , I will use for the example version ocp4_16 , and then the oc cluster-compare using the correct reference file againt our running cluster:
+
+![reference files screenshot](images/reference_files.png)
 
 
