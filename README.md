@@ -42,4 +42,6 @@ Change to the directory relevant to the cluster version you are using , I will u
 
 ![reference files screenshot](images/reference_files.png)
 
+From the Image above , You can see that we have currently 3 reference files , distinct by the cluster connection type:
+
 
