@@ -7,4 +7,9 @@ And the 4.19 version of the tool isn't released yet...  It's part of 4.19 OpenSh
 
 https://github.com/openshift/kube-compare/blob/release-4.18/docs/image-build.md
 
-you need to clone the cluster compare from github and run it as instructed.
+you need to clone the cluster compare from github and run it as instructed. if you want to use the file here copy it to a directory that exists in your search path , for example:
+
+```bash
+cd </local/kubectl-cluster_compare>
+cp kubectl-cluster_compare /usr/local/bin
+```
