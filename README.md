@@ -45,7 +45,16 @@ Change to the directory relevant to the cluster version you are using , I will u
 From the Image above , You can see that we have currently 3 reference files ( *.yaml files), distinct by the cluster connection type:
 - sriov_legacy_metadata.yaml
 - rdma_shared_metadata.yaml
-- rdma_shared_metadata.yaml
+- host_dev_net_metadata.yaml
+
+```bash
+cd ~/cluster-compare/kube-compare-reference/ocp4_16
+oc cluster-compare -r sriov_legacy_metadata.yaml
+```
+
+In the following image you will see the command and it`s outcome:
+
+![running_cluster_compare](images/running_cluster_compare.png)
 
 
 
