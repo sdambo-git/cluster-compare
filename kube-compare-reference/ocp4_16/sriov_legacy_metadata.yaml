@@ -67,6 +67,8 @@ parts:
       - name: sriov-legacy-nic-cluster-policy
         allOrNoneOf:
           - path: required/sriov-legacy/network-sriovleg-nic-cluster-policy.yaml     
+            config:
+              ignore-unspecified-fields: true
           - path: required/sriov-legacy/sriov-network-node-policy.yaml     
             config:
               ignore-unspecified-fields: true

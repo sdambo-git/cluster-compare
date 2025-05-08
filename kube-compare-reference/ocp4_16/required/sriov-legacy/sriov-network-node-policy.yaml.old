@@ -17,10 +17,10 @@ spec:
   nodeSelector:
     {{- if and .spec .spec.nodeSelector }}
     {{- range $key, $value := .spec.nodeSelector }}
-    {{ $key }}: {{ if or (eq (printf "%v" $value) "true") (eq (printf "%v" $value) "\"true\"") }}true{{ else }}{{ $value }}{{ end }}
+    {{ $key }}: {{ $value }}
     {{- end }}
     {{- else }}
-    feature.node.kubernetes.io/pci-15b3.present: true
+    feature.node.kubernetes.io/pci-15b3.present: "true"
     {{- end }}
   numVfs: {{ if and .spec (hasKey .spec "numVfs") }}{{ .spec.numVfs }}{{ else }}(?<numVfs>\d+){{ end }}
   priority: {{ if and .spec (hasKey .spec "priority") }}{{ .spec.priority }}{{ else }}(?<priority>\d+){{ end }}
