@@ -56,6 +56,12 @@ In the following image you will see the command and it`s outcome:
 
 ![running_cluster_compare](images/running_cluster_compare.png)
 
+## Using cluster-compare with must-gather
 
+Because must-gather does`t know how to work with some AI operators ,I created some shell scripts that needs to be run with must gather:
+- gather_gpu_nfd_operators.sh
+- gather_gpu_policies.sh
+
+  
 
 
