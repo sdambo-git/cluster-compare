@@ -58,8 +58,10 @@ In the following image you will see the command and it`s outcome:
 
 ## Using cluster-compare with must-gather
 
-Because must-gather does`t know how to work with some AI operators ,I created some shell scripts that needs to be run with must gather:
+Because must-gather does`t know how to work with some AI operators ,I created a shell script that need to be run with must gather:
 - gather_gpu_nfd_operators.sh
+
+![must_gather_shell_run](images/must-gather_shell_run.png)
 
 
   
