@@ -42,7 +42,7 @@ Change to the directory relevant to the cluster version you are using , I will u
 
 ![reference files screenshot](images/reference_files.png)
 
-From the Image above , You can see that we have currently 3 reference files ( *.yaml files), distinct by the cluster connection type:
+From the Image above , You can see that we have currently 3 reference files ( *_metadata.yaml files), distinct by the cluster connection type:
 - sriov_legacy_metadata.yaml
 - rdma_shared_metadata.yaml
 - host_dev_net_metadata.yaml
@@ -56,6 +56,14 @@ In the following image you will see the command and it`s outcome:
 
 ![running_cluster_compare](images/running_cluster_compare.png)
 
+## Using cluster-compare with must-gather
 
+Because must-gather does`t know how to work with some AI operators ,I created a shell script that need to be run with must gather:
+- gather_gpu_nfd_operators.sh
+
+![must_gather_shell_run](images/must-gather_shell_run.png)
+
+
+  
 
 
