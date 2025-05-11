@@ -69,5 +69,5 @@ It will create 2 output directories:
 
 Now we need to run cluster-compare tool against the output folders the must-gather created:
   
-
+![cluster-compare_must-gather.png](images/cluster-compare_must-gather.png)
 
