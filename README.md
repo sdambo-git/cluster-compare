@@ -68,6 +68,11 @@ It will create 2 output directories:
 ![must_gather_shell_run](images/must-gather_shell_run.png)
 
 Now we need to run cluster-compare tool against the output folders the must-gather created:
+
+```bash
+cd ~
+oc cluster-compare -r cluster-compare/kube-compare-reference/ocp4_16/sriov_legacy_metadata.yaml -f "must-gather*/*/cluster-scoped-resources","must-gather*/*/namespaces","must-gather*/gpu-operator/*","must-gather*/nfd-operator/*" -R 2>/dev/null
+```
   
 ![cluster-compare_must-gather.png](images/cluster-compare_must-gather.png)
 
