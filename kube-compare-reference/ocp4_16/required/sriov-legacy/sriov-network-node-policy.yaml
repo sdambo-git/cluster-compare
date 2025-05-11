@@ -14,14 +14,13 @@ spec:
     {{- else }}
     - (?<pfName>[\w.]+#\d+-\d+)
     {{- end }}
+  {{- if and .spec .spec.nodeSelector }}
   nodeSelector:
-    {{- if and .spec .spec.nodeSelector }}
-    {{- range $key, $value := .spec.nodeSelector }}
-    {{ $key }}: {{ if or (eq (printf "%v" $value) "true") (eq (printf "%v" $value) "\"true\"") }}true{{ else }}{{ $value }}{{ end }}
-    {{- end }}
-    {{- else }}
+    {{ .spec.nodeSelector | toYaml | nindent 4 }}
+  {{- else }}
+  nodeSelector:
     feature.node.kubernetes.io/pci-15b3.present: true
-    {{- end }}
+  {{- end }}
   numVfs: {{ if and .spec (hasKey .spec "numVfs") }}{{ .spec.numVfs }}{{ else }}(?<numVfs>\d+){{ end }}
   priority: {{ if and .spec (hasKey .spec "priority") }}{{ .spec.priority }}{{ else }}(?<priority>\d+){{ end }}
   isRdma: {{ if and .spec (hasKey .spec "isRdma") }}{{ .spec.isRdma }}{{ else }}true{{ end }}

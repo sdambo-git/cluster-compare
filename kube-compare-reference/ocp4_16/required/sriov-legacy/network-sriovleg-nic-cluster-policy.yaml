@@ -19,5 +19,5 @@ spec:
     env:
     {{- range .spec.ofedDriver.env }}
     - name: {{ .name }}
-      value: {{ .value }}
+      value: {{ .value | toYaml }}
     {{- end }}

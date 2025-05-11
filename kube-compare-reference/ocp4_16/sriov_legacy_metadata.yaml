@@ -53,7 +53,6 @@ parts:
       - name: sriov-operator
         allOf:
           - path: required/sriov-operator/SriovNS.yaml
-          - path: required/sriov-operator/SriovNetwork.yaml
           - path: required/sriov-operator/SriovSubscription.yaml
             config:
               ignore-unspecified-fields: true
@@ -65,7 +64,7 @@ parts:
           - path: required/sriov-operator/SriovOperatorConfig.yaml
           - path: required/sriov-operator/SriovOperatorConfigForSNO.yaml
       - name: sriov-legacy-nic-cluster-policy
-        allOrNoneOf:
+        allOf:
           - path: required/sriov-legacy/network-sriovleg-nic-cluster-policy.yaml     
             config:
               ignore-unspecified-fields: true
