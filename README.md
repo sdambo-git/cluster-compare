@@ -63,7 +63,7 @@ Because must-gather does`t know how to work with some AI operators ,I created a 
 
 ![must_gather_shell_run](images/must-gather_shell_run.png)
 
-
+Now we need to run cluster-compare tool against the output folders the must-gather created:
   
 
 
