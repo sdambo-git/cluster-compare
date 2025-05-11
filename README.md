@@ -61,9 +61,13 @@ In the following image you will see the command and it`s outcome:
 Because must-gather does`t know how to work with some AI operators ,I created a shell script that need to be run with must gather:
 - gather_gpu_nfd_operators.sh
 
+It will create 2 output directories:
+- must-gather
+- must-gather-data
+
 ![must_gather_shell_run](images/must-gather_shell_run.png)
 
 Now we need to run cluster-compare tool against the output folders the must-gather created:
   
-
+![cluster-compare_must-gather.png](images/cluster-compare_must-gather.png)
 
