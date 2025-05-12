@@ -35,6 +35,14 @@ Create a temporary Container:
 
 ![podman_create.png](images/podman_create.png)
 
+Copy the binary out:
+
+![podman_cp.png](images/podman_cp.png)
+
+Remove the temporary container:
+
+![podman_rm.png](images/podman_rm.png)
+
 ## Using cluster-compare directly on the cluster
 
 clone the cluster compare templates and references to a local directory on your notebook, example:
