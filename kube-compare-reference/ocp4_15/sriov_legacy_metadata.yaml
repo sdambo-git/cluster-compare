@@ -53,7 +53,6 @@ parts:
       - name: sriov-operator
         allOf:
           - path: required/sriov-operator/SriovNS.yaml
-          - path: required/sriov-operator/SriovNetwork.yaml
           - path: required/sriov-operator/SriovSubscription.yaml
             config:
               ignore-unspecified-fields: true
@@ -65,9 +64,13 @@ parts:
           - path: required/sriov-operator/SriovOperatorConfig.yaml
           - path: required/sriov-operator/SriovOperatorConfigForSNO.yaml
       - name: sriov-legacy-nic-cluster-policy
-        allOrNoneOf:
+        allOf:
           - path: required/sriov-legacy/network-sriovleg-nic-cluster-policy.yaml     
+            config:
+              ignore-unspecified-fields: true
           - path: required/sriov-legacy/sriov-network-node-policy.yaml     
+            config:
+              ignore-unspecified-fields: true
           - path: required/sriov-legacy/sriov-network.yaml
             config:
               ignore-unspecified-fields: true
@@ -87,20 +90,6 @@ parts:
           - path: required/network-operator/NetworkSubscription.yaml
             config:
               ignore-unspecified-fields: true
-      - name: Network operator RDMA
-        anyOf:
-          - path: required/network-operator/network-sharedrdma-nic-cluster-policy.yaml
-            config:
-              ignore-unspecified-fields: true
-              perField:
-              - pathToKey: spec.rdmaSharedDevicePlugin.config
-                inlineDiffFunc: capturegroups
-          - path: required/network-operator/macvlan-network.yaml
-            config:
-              ignore-unspecified-fields: true
-              perField:
-              - pathToKey: spec.ipam
-                inlineDiffFunc: capturegroups
   - name: optional-network-interface
     description: |-
       optional network interfaces
