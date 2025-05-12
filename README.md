@@ -1,5 +1,8 @@
 # cluster-compare Install & Usage
 ## cluster-compare oc plugin installation
+
+**Option 1**
+
 You can use the 4.19 version from available in my repository it was compiled from source code , the reason of compiling the 4.19 is because it has some template creation improvments
 pay attention that the file is compiled on rhel9 OS !
 
@@ -21,6 +24,12 @@ if you want to use the file here copy it to a directory that exists in your sear
 cd ~
 sudo cp kubectl-cluster_compare /usr/local/bin
 ```
+
+**Option 2**
+
+copy kubectl-cluster_compare from image file, Which is located in my quay.io repository:
+
+![pull_quay screenshot](images/pull_quay.png)
 
 ## Using cluster-compare directly on the cluster
 
