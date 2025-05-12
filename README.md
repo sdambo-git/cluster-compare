@@ -43,6 +43,10 @@ Remove the temporary container:
 
 ![podman_rm.png](images/podman_rm.png)
 
+Copy the kubectl-cluster_compare binary file to /usr/local/bin ( It is in your search PATH ):
+
+![podman_kube.png](images/podman_kube.png)
+
 ## Using cluster-compare directly on the cluster
 
 clone the cluster compare templates and references to a local directory on your notebook, example:
