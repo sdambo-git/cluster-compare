@@ -60,7 +60,7 @@ In the following image you will see the command and it`s outcome:
 
 Because must-gather does`t know how to work with some operators ,I created a shell script that need to be run with must gather.
 
-<span style="color:red"> **! please run the script from the your root home direcoty !**: </span>
+🔴 <span style="color:red"> **! please run the script from the your root home direcoty !**: </span>
 - gather_gpu_nfd_operators.sh
 
 It will create 2 output directories:
