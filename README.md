@@ -33,7 +33,7 @@ copy kubectl-cluster_compare from image file, Which is located in my quay.io rep
 
 Create a temporary Container:
 
-![pull_quay screenshot](images/pull_quay.png)
+![podman_create.png](images/podman_create.png)
 
 ## Using cluster-compare directly on the cluster
 
