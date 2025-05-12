@@ -1,5 +1,8 @@
 # cluster-compare Install & Usage
 ## cluster-compare oc plugin installation
+
+**Option 1**
+
 You can use the 4.19 version from available in my repository it was compiled from source code , the reason of compiling the 4.19 is because it has some template creation improvments
 pay attention that the file is compiled on rhel9 OS !
 
@@ -21,6 +24,12 @@ if you want to use the file here copy it to a directory that exists in your sear
 cd ~
 sudo cp kubectl-cluster_compare /usr/local/bin
 ```
+
+**Option 2**
+
+copy kubectl-cluster_compare from image file, Which is located in my quay.io repository:
+
+![pull_quay screenshot](images/pull_quay.png)
 
 ## Using cluster-compare directly on the cluster
 
@@ -58,7 +67,9 @@ In the following image you will see the command and it`s outcome:
 
 ## Using cluster-compare with must-gather
 
-Because must-gather does`t know how to work with some AI operators ,I created a shell script that need to be run with must gather:
+Because must-gather does`t know how to work with some operators ,I created a shell script that need to be run with must gather.
+
+🔴 <span style="color:red"> **! please run the script from the your root home direcoty !**: </span>
 - gather_gpu_nfd_operators.sh
 
 It will create 2 output directories:
@@ -68,6 +79,11 @@ It will create 2 output directories:
 ![must_gather_shell_run](images/must-gather_shell_run.png)
 
 Now we need to run cluster-compare tool against the output folders the must-gather created:
+
+```bash
+cd ~
+oc cluster-compare -r cluster-compare/kube-compare-reference/ocp4_16/sriov_legacy_metadata.yaml -f "must-gather*/*/cluster-scoped-resources","must-gather*/*/namespaces","must-gather*/gpu-operator/*","must-gather*/nfd-operator/*" -R 2>/dev/null
+```
   
 ![cluster-compare_must-gather.png](images/cluster-compare_must-gather.png)
 
