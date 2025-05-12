@@ -31,6 +31,10 @@ copy kubectl-cluster_compare from image file, Which is located in my quay.io rep
 
 ![pull_quay screenshot](images/pull_quay.png)
 
+Create a temporary Container:
+
+![pull_quay screenshot](images/pull_quay.png)
+
 ## Using cluster-compare directly on the cluster
 
 clone the cluster compare templates and references to a local directory on your notebook, example:
