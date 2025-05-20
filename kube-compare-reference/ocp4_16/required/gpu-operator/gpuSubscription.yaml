@@ -8,7 +8,7 @@ metadata:
     operators.coreos.com/gpu-operator-certified.nvidia-gpu-operator: ""
   {{- end }}
 spec:
-  channel: {{ .spec.channel }} 
+  channel: {{ "stable" }}
   name: gpu-operator-certified
   source: {{ .spec.source }}
   sourceNamespace: openshift-marketplace

@@ -30,8 +30,8 @@ parts:
       NVIDIA GPUDirect RDMA
     components:
       - name: machine-config
-        anyOf:
-          - path: required/machine-config/worker-blacklist-irdma/99-machine-config-blacklist-irdma.yaml
+        allOf:
+          - path: optional/machine-config/worker-blacklist-irdma/99-machine-config-blacklist-irdma.yaml
   - name: nfd-operator
     description: |-
       nfd operator 
@@ -43,48 +43,63 @@ parts:
               ignore-unspecified-fields: true
           - path: required/nfd-operator/nfdSubscription.yaml
           - path: required/nfd-operator/nfd-instance.yaml
-            config:
-              ignore-unspecified-fields: true
       - name: nfd-operator-ns
-        allOf:    
+        anyOf:    
           - path: required/nfd-operator/nfd-operator-NS.yaml
-  - name: required-network-operator
+  - name: required-sriov-operator
     description: |-
-      Network operator CRs
+      SRIOV operator CRs
     components:
-      - name: Network-operator
-        anyOf:
-          - path: required/network-operator/NetworkSubscriptionNS.yaml
-          - path: required/network-operator/NetworkSubscriptionOperGroup.yaml
+      - name: sriov-operator
+        allOf:
+          - path: optional/sriov-operator/SriovNS.yaml
+          - path: optional/sriov-operator/SriovSubscription.yaml
             config:
               ignore-unspecified-fields: true
-          - path: required/network-operator/NetworkSubscription.yaml
+          - path: optional/sriov-operator/SriovSubscriptionOperGroup.yaml
             config:
               ignore-unspecified-fields: true
-      - name: Network operator RDMA
-        anyOf:
-          - path: required/network-operator/network-sharedrdma-nic-cluster-policy.yaml
+      - name: sriov-operator-config
+        oneOf:
+          - path: optional/sriov-operator/SriovOperatorConfig.yaml
+          - path: optional/sriov-operator/SriovOperatorConfigForSNO.yaml
+      - name: sriov-legacy-nic-cluster-policy
+        allOf:
+          - path: optional/sriov-legacy/network-sriovleg-nic-cluster-policy.yaml     
             config:
               ignore-unspecified-fields: true
-              perField:
-              - pathToKey: spec.rdmaSharedDevicePlugin.config
-                inlineDiffFunc: capturegroups
-          - path: required/network-operator/macvlan-network.yaml
+          - path: optional/sriov-legacy/sriov-network-node-policy.yaml     
+            config:
+              ignore-unspecified-fields: true
+          - path: optional/sriov-legacy/sriov-network.yaml
             config:
               ignore-unspecified-fields: true
               perField:
               - pathToKey: spec.ipam
                 inlineDiffFunc: capturegroups
+  - name: required-network-operator
+    description: |-
+      Network operator CRs
+    components:
+      - name: Network-operator
+        allOf:
+          - path: optional/network-operator/NetworkSubscriptionNS.yaml
+          - path: optional/network-operator/NetworkSubscriptionOperGroup.yaml
+            config:
+              ignore-unspecified-fields: true
+          - path: optional/network-operator/NetworkSubscription.yaml
+            config:
+              ignore-unspecified-fields: true
   - name: optional-network-interface
     description: |-
       optional network interfaces
     components:
       - name: optional-network-interface
-        anyOf:
+        allOrNoneOf:
           - path: optional/network/ipoib-network.yaml
   - name: gpu-operator
     description: |-
-      The NVIDIA GPU Operator CRs
+      The NVIDIA GPU Operator CRs (versions 24.6.2 - 25.3.0)
     components:
       - name: gpu-operator
         allOf:
@@ -94,7 +109,7 @@ parts:
               ignore-unspecified-fields: true
           - path: required/gpu-operator/gpu-cluster-policy.yaml
       - name: gpu-operator-ns      
-        allOf:
+        anyOf:
           - path: required/gpu-operator/gpu-operator-NS.yaml
 templateFunctionFiles:
   - validate_node_selector.tmpl

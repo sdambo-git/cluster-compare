@@ -97,11 +97,11 @@ parts:
       optional network interfaces
     components:
       - name: optional-network-interface
-        allOrNoneOf:
+        anyOf:
           - path: optional/network/ipoib-network.yaml
   - name: gpu-operator
     description: |-
-      The NVIDIA GPU Operator CRs
+      The NVIDIA GPU Operator CRs (versions 24.6.2 - 25.3.0)
     components:
       - name: gpu-operator
         allOf:

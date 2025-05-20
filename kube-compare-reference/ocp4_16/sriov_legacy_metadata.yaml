@@ -44,34 +44,34 @@ parts:
           - path: required/nfd-operator/nfdSubscription.yaml
           - path: required/nfd-operator/nfd-instance.yaml
       - name: nfd-operator-ns
-        anyOf:    
+        allOf:    
           - path: required/nfd-operator/nfd-operator-NS.yaml
   - name: required-sriov-operator
     description: |-
       SRIOV operator CRs
     components:
       - name: sriov-operator
-        allOf:
-          - path: required/sriov-operator/SriovNS.yaml
-          - path: required/sriov-operator/SriovSubscription.yaml
+        anyOf:
+          - path: optional/sriov-operator/SriovNS.yaml
+          - path: optional/sriov-operator/SriovSubscription.yaml
             config:
               ignore-unspecified-fields: true
-          - path: required/sriov-operator/SriovSubscriptionOperGroup.yaml
+          - path: optional/sriov-operator/SriovSubscriptionOperGroup.yaml
             config:
               ignore-unspecified-fields: true
       - name: sriov-operator-config
         oneOf:
-          - path: required/sriov-operator/SriovOperatorConfig.yaml
-          - path: required/sriov-operator/SriovOperatorConfigForSNO.yaml
+          - path: optional/sriov-operator/SriovOperatorConfig.yaml
+          - path: optional/sriov-operator/SriovOperatorConfigForSNO.yaml
       - name: sriov-legacy-nic-cluster-policy
-        allOf:
-          - path: required/sriov-legacy/network-sriovleg-nic-cluster-policy.yaml     
+        anyOf:
+          - path: optional/sriov-legacy/network-sriovleg-nic-cluster-policy.yaml     
             config:
               ignore-unspecified-fields: true
-          - path: required/sriov-legacy/sriov-network-node-policy.yaml     
+          - path: optional/sriov-legacy/sriov-network-node-policy.yaml     
             config:
               ignore-unspecified-fields: true
-          - path: required/sriov-legacy/sriov-network.yaml
+          - path: optional/sriov-legacy/sriov-network.yaml
             config:
               ignore-unspecified-fields: true
               perField:
@@ -82,12 +82,12 @@ parts:
       Network operator CRs
     components:
       - name: Network-operator
-        allOf:
-          - path: required/network-operator/NetworkSubscriptionNS.yaml
-          - path: required/network-operator/NetworkSubscriptionOperGroup.yaml
+        anyOf:
+          - path: optional/network-operator/NetworkSubscriptionNS.yaml
+          - path: optional/network-operator/NetworkSubscriptionOperGroup.yaml
             config:
               ignore-unspecified-fields: true
-          - path: required/network-operator/NetworkSubscription.yaml
+          - path: optional/network-operator/NetworkSubscription.yaml
             config:
               ignore-unspecified-fields: true
   - name: optional-network-interface
