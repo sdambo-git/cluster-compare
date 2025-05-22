@@ -71,6 +71,7 @@ From the Image above , You can see that we have currently 3 reference files ( *_
 - sriov_legacy_metadata.yaml
 - rdma_shared_metadata.yaml
 - host_dev_net_metadata.yaml
+- gpu_operator_metadata.yaml  (for GPU only configuration )
 
 ```bash
 cd ~/cluster-compare/kube-compare-reference/ocp4_16
