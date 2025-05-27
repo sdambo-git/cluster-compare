@@ -1,0 +1,34 @@
+apiVersion: nfd.openshift.io/v1
+kind: NodeFeatureDiscovery
+metadata:
+  name: {{ .metadata.name | default "nfd-instance" }}
+  namespace: {{ .metadata.namespace | default "openshift-nfd" }}
+spec:
+  {{- if hasKey .spec "enableTaints" }}
+  enableTaints: {{ .spec.enableTaints }}
+  {{- else }}
+  enableTaints: false
+  {{- end }}
+  instance: {{ .spec.instance | default "" | quote }}
+  operand:
+    servicePort: {{ .spec.operand.servicePort | default 12000 }}
+  prunerOnDelete: {{ .spec.prunerOnDelete | default false }}
+  topologyUpdater: {{ .spec.topologyUpdater | default false }}
+  workerConfig:
+    configData: |
+      {{- if .spec.workerConfig.configData }}
+{{ .spec.workerConfig.configData | indent 6 }}
+      {{- else }}
+      core:
+        sleepInterval: 60s
+      sources:
+        pci:
+          deviceClassWhitelist:
+            - "02"
+            - "03"
+            - "0200"
+            - "0207"
+            - "12"
+          deviceLabelFields:
+            - "vendor"
+      {{- end }}

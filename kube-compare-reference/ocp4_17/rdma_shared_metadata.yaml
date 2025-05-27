@@ -30,7 +30,7 @@ parts:
       NVIDIA GPUDirect RDMA
     components:
       - name: machine-config
-        allOf:
+        anyOf:
           - path: required/machine-config/worker-blacklist-irdma/99-machine-config-blacklist-irdma.yaml
   - name: nfd-operator
     description: |-
@@ -43,42 +43,17 @@ parts:
               ignore-unspecified-fields: true
           - path: required/nfd-operator/nfdSubscription.yaml
           - path: required/nfd-operator/nfd-instance.yaml
+            config:
+              ignore-unspecified-fields: true
       - name: nfd-operator-ns
-        anyOf:    
+        allOf:    
           - path: required/nfd-operator/nfd-operator-NS.yaml
-  - name: required-sriov-operator
-    description: |-
-      SRIOV operator CRs
-    components:
-      - name: sriov-operator
-        allOf:
-          - path: required/sriov-operator/SriovNetwork.yaml
-          - path: required/sriov-operator/SriovSubscription.yaml
-            config:
-              ignore-unspecified-fields: true
-          - path: required/sriov-operator/SriovSubscriptionOperGroup.yaml
-            config:
-              ignore-unspecified-fields: true
-      - name: sriov-operator-config
-        oneOf:
-          - path: required/sriov-operator/SriovOperatorConfig.yaml
-          - path: required/sriov-operator/SriovOperatorConfigForSNO.yaml
-      - name: sriov-legacy-nic-cluster-policy
-        allOrNoneOf:
-          - path: required/sriov-legacy/network-sriovleg-nic-cluster-policy.yaml     
-          - path: required/sriov-legacy/sriov-network-node-policy.yaml     
-          - path: required/sriov-legacy/sriov-network.yaml
-            config:
-              ignore-unspecified-fields: true
-              perField:
-              - pathToKey: spec.ipam
-                inlineDiffFunc: capturegroups
   - name: required-network-operator
     description: |-
       Network operator CRs
     components:
       - name: Network-operator
-        allOf:
+        anyOf:
           - path: required/network-operator/NetworkSubscriptionNS.yaml
           - path: required/network-operator/NetworkSubscriptionOperGroup.yaml
             config:
@@ -105,7 +80,7 @@ parts:
       optional network interfaces
     components:
       - name: optional-network-interface
-        allOrNoneOf:
+        anyOf:
           - path: optional/network/ipoib-network.yaml
   - name: gpu-operator
     description: |-
@@ -119,7 +94,7 @@ parts:
               ignore-unspecified-fields: true
           - path: required/gpu-operator/gpu-cluster-policy.yaml
       - name: gpu-operator-ns      
-        anyOf:
+        allOf:
           - path: required/gpu-operator/gpu-operator-NS.yaml
 templateFunctionFiles:
   - validate_node_selector.tmpl

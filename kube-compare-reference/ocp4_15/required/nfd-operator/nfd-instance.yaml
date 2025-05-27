@@ -13,9 +13,10 @@ spec:
     {{- else }}
     servicePort: 12000
     {{- end }}
-    {{- if .spec.prunerOnDelete }}
-  prunerOnDelete: false
-    {{- end }} 
+#    {{- if .spec.prunerOnDelete }}
+#  prunerOnDelete: {{ if (hasKey .spec "prunerOnDelete") }}{{ .spec.prunerOnDelete }}{{ else }}false{{ end }}
+#   prunerOnDelete: {{ .spec.prunerOnDelete }}
+#    {{- end }} 
   topologyUpdater: {{ .spec.topologyUpdater }}
   workerConfig:
     {{- if .spec.workerConfig }}
@@ -40,7 +41,6 @@ spec:
   instance: ""
   operand:
     servicePort: 12000
-  prunerOnDelete: false
   topologyUpdater: false
   workerConfig:
     configData: |

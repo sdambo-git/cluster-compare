@@ -11,7 +11,7 @@ spec:
     config:
       default: all-disabled
       name: default-mig-parted-config
-    enabled: {{ .spec.migManager.enabled | default true }}
+    enabled: true 
   operator:
     defaultRuntime: {{ .spec.operator.defaultRuntime | default "crio" }}
     initContainer: {}
@@ -33,11 +33,11 @@ spec:
   driver:
     licensingConfig:
       nlsEnabled: {{ .spec.driver.licensingConfig.nlsEnabled | default true }}
-      configMapName: ""
+      # configMapName: ""
     certConfig:
       name: ""
     rdma:
-      enabled: {{ .spec.driver.rdma.enabled | default true }}
+      enabled: {{ .spec.driver.rdma.enabled }}
     kernelModuleConfig:
       name: ""
     upgradePolicy:
@@ -59,7 +59,7 @@ spec:
       configMapName: ""
     virtualTopology:
       config: ""
-    enabled: {{ .spec.driver.enabled | default true }}
+    # enabled: {{ .spec.driver.enabled | default true }}
     useNvidiaDriverCRD: {{ .spec.driver.useNvidiaDriverCRD | default false }}
     useOpenKernelModules: {{ .spec.driver.useOpenKernelModules | default true }}
   devicePlugin:
