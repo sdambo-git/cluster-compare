@@ -1,12 +1,12 @@
 # MODIFIED VERSION COMPATIBILITY
 # ------------------------------
-# This reference design was originally created specifically for OpenShift 4.16.
+# This reference design was originally created specifically for OpenShift 4.17.
 # The version-check component has been intentionally removed to allow deployment
 # across multiple OpenShift versions. Please be aware that:
 #
-# 1. Some components may behave differently on versions other than 4.16
-# 2. Documentation links still reference version 4.16 specifications
-# 3. Testing has primarily been conducted on version 4.16
+# 1. Some components may behave differently on versions other than 4.17
+# 2. Documentation links still reference version 4.17 specifications
+# 3. Testing has primarily been conducted on version 4.17
 #
 # If you encounter issues, consider checking version-specific requirements
 # for the components referenced in this file.
@@ -16,7 +16,7 @@ parts:
   - name: version-check
     description: |-
       A mismatch here means you may be using the wrong reference.
-      This reference was designed for OpenShift 4.16.
+      This reference was designed for OpenShift 4.17.
     components:
       - name: version-check
         allOf:
@@ -25,13 +25,6 @@ parts:
               ignore-unspecified-fields: true
               fieldsToOmitRefs:
                 - allowStatusCheck
-  - name: rdma-gpudirect 
-    description: |-
-      NVIDIA GPUDirect RDMA
-    components:
-      - name: machine-config
-        allOf:
-          - path: optional/machine-config/worker-blacklist-irdma/99-machine-config-blacklist-irdma.yaml
   - name: nfd-operator
     description: |-
       nfd operator 
@@ -44,62 +37,11 @@ parts:
           - path: required/nfd-operator/nfdSubscription.yaml
           - path: required/nfd-operator/nfd-instance.yaml
       - name: nfd-operator-ns
-        anyOf:    
+        allOf:    
           - path: required/nfd-operator/nfd-operator-NS.yaml
-  - name: required-sriov-operator
-    description: |-
-      SRIOV operator CRs
-    components:
-      - name: sriov-operator
-        allOf:
-          - path: optional/sriov-operator/SriovNS.yaml
-          - path: optional/sriov-operator/SriovSubscription.yaml
-            config:
-              ignore-unspecified-fields: true
-          - path: optional/sriov-operator/SriovSubscriptionOperGroup.yaml
-            config:
-              ignore-unspecified-fields: true
-      - name: sriov-operator-config
-        oneOf:
-          - path: optional/sriov-operator/SriovOperatorConfig.yaml
-          - path: optional/sriov-operator/SriovOperatorConfigForSNO.yaml
-      - name: sriov-legacy-nic-cluster-policy
-        allOf:
-          - path: optional/sriov-legacy/network-sriovleg-nic-cluster-policy.yaml     
-            config:
-              ignore-unspecified-fields: true
-          - path: optional/sriov-legacy/sriov-network-node-policy.yaml     
-            config:
-              ignore-unspecified-fields: true
-          - path: optional/sriov-legacy/sriov-network.yaml
-            config:
-              ignore-unspecified-fields: true
-              perField:
-              - pathToKey: spec.ipam
-                inlineDiffFunc: capturegroups
-  - name: required-network-operator
-    description: |-
-      Network operator CRs
-    components:
-      - name: Network-operator
-        allOf:
-          - path: optional/network-operator/NetworkSubscriptionNS.yaml
-          - path: optional/network-operator/NetworkSubscriptionOperGroup.yaml
-            config:
-              ignore-unspecified-fields: true
-          - path: optional/network-operator/NetworkSubscription.yaml
-            config:
-              ignore-unspecified-fields: true
-  - name: optional-network-interface
-    description: |-
-      optional network interfaces
-    components:
-      - name: optional-network-interface
-        allOrNoneOf:
-          - path: optional/network/ipoib-network.yaml
   - name: gpu-operator
     description: |-
-      The NVIDIA GPU Operator CRs (versions 24.6.2 - 25.3.0)
+      The NVIDIA GPU Operator CRs
     components:
       - name: gpu-operator
         allOf:

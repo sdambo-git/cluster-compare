@@ -17,9 +17,6 @@ spec:
     enabled: {{ .spec.driver.enabled | default true }}
     useNvidiaDriverCRD: {{ .spec.driver.useNvidiaDriverCRD | default false }}
     useOpenKernelModules: false
-    {{- if .spec.driver.kernelModuleType }}  
-    kernelModuleType: auto
-    {{- end }}
     upgradePolicy:
       autoUpgrade: {{ .spec.driver.upgradePolicy.autoUpgrade | default true }}
       drain:
@@ -27,6 +24,9 @@ spec:
         enable: {{ .spec.driver.upgradePolicy.drain.enable | default false }}
         force: {{ .spec.driver.upgradePolicy.drain.force | default false }}
         timeoutSeconds: {{ .spec.driver.upgradePolicy.drain.timeoutSeconds | default 300 }}
+      {{- if .spec.driver.kernelModuleType }}  
+      kernelModuleType: auto
+      {{- end }}
       maxParallelUpgrades: {{ .spec.driver.upgradePolicy.maxParallelUpgrades | default 1 }}
       maxUnavailable: {{ .spec.driver.upgradePolicy.maxUnavailable | default "25%" }}
       podDeletion:
@@ -96,6 +96,6 @@ spec:
   vfioManager:
     enabled: {{ .spec.vfioManager.enabled | default true }}
   gds:
-    enabled: {{ .specs.gds.enabled | default false }}
+    enabled: {{ .spec.gds.enabled | default false }}
   gdrcopy:
     enabled: {{ .spec.gdrcopy.enabled | default false }}

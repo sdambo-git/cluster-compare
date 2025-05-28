@@ -1,49 +1,24 @@
 apiVersion: nfd.openshift.io/v1
 kind: NodeFeatureDiscovery
 metadata:
-  name: {{ .metadata.name }}
-  namespace: openshift-nfd
+  name: {{ .metadata.name | default "nfd-instance" }}
+  namespace: {{ .metadata.namespace | default "openshift-nfd" }}
 spec:
-  {{- if .spec }}
-  instance: ''
-  operand:
-    image: {{ if and .spec .spec.operand (hasKey .spec.operand "image") }}{{ .spec.operand.image }}{{ end }}
-    {{- if .spec.operand }}
-    servicePort: {{ .spec.operand.servicePort }}
-    {{- else }}
-    servicePort: 12000
-    {{- end }}
-    {{- if .spec.prunerOnDelete }}
-  prunerOnDelete: false
-    {{- end }} 
-  topologyUpdater: {{ .spec.topologyUpdater }}
-  workerConfig:
-    {{- if .spec.workerConfig }}
-    configData: |
-{{ .spec.workerConfig.configData | indent 6 }}
-    {{- else }}
-    configData: |
-      core:
-        sleepInterval: 60s
-      sources:
-        pci:
-          deviceClassWhitelist:
-            - "02"
-            - "03"
-            - "0200"
-            - "0207"
-            - "12"
-          deviceLabelFields:
-            - "vendor"
-    {{- end }}
+  {{- if hasKey .spec "enableTaints" }}
+  enableTaints: {{ .spec.enableTaints }}
   {{- else }}
-  instance: ""
+  enableTaints: false
+  {{- end }}
+  instance: {{ .spec.instance | default "" | quote }}
   operand:
-    servicePort: 12000
-  prunerOnDelete: false
-  topologyUpdater: false
+    servicePort: {{ .spec.operand.servicePort | default 12000 }}
+  prunerOnDelete: {{ .spec.prunerOnDelete | default false }}
+  topologyUpdater: {{ .spec.topologyUpdater | default false }}
   workerConfig:
     configData: |
+      {{- if .spec.workerConfig.configData }}
+{{ .spec.workerConfig.configData | indent 6 }}
+      {{- else }}
       core:
         sleepInterval: 60s
       sources:
@@ -56,4 +31,4 @@ spec:
             - "12"
           deviceLabelFields:
             - "vendor"
-  {{- end }}
+      {{- end }}
