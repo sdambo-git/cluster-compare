@@ -1,4 +1,7 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: openshift-nfd
+  labels:
+    name: {{ .metadata.labels.name | default (.metadata.name | default "openshift-nfd") }}
+    openshift.io/cluster-monitoring: {{ .metadata.labels.clusterMonitoring | default "true" | quote }}
+  name: {{ .metadata.name | default "openshift-nfd" }}
