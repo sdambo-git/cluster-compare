@@ -45,13 +45,25 @@ podman create --name temp quay.io/sdambo/cluster_compare:4.19
 
 Copy the binary out:
 
+```bash
+podman cp temp:/app/kubectl-cluster_compare /tmp
+```
+
 ![podman_cp.png](images/podman_cp.png)
 
 Remove the temporary container:
 
+```bash
+podman rm temp
+```
+
 ![podman_rm.png](images/podman_rm.png)
 
 Copy the kubectl-cluster_compare binary file to /usr/local/bin ( It is in your search PATH ):
+
+```bash
+sudo cp /tmp/kubectl-cluster_compare /usr/local/bin/
+```
 
 ![podman_kube.png](images/podman_kube.png)
 
