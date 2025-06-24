@@ -29,9 +29,17 @@ sudo cp kubectl-cluster_compare /usr/local/bin
 
 copy kubectl-cluster_compare from image file, Which is located in my quay.io repository:
 
+```bash
+podman pull quay.io/sdambo/cluster_compare:4.19
+```
+
 ![pull_quay screenshot](images/pull_quay.png)
 
 Create a temporary Container:
+
+```bash
+podman create --name temp quay.io/sdambo/cluster_compare:4.19
+```
 
 ![podman_create.png](images/podman_create.png)
 
